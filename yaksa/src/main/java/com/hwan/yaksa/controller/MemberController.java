@@ -34,6 +34,11 @@ public class MemberController {
         return "login/join";
     }
 
+    @GetMapping("/myPage")
+    public String myPage(Model model){
+        return "login/myPage";
+    }
+
     @GetMapping("/main")
     @Auth
     public String getMainPage(Model model){
@@ -53,6 +58,7 @@ public class MemberController {
         if(flag==0){
           Long sessionId=memberService.createSession(loginDTO);
           httpSession.setAttribute("sessionId",sessionId);
+
           return "redirect:/main";
         }
         else{

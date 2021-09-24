@@ -1,6 +1,7 @@
 package com.hwan.yaksa.interceptor;
 
 import com.hwan.yaksa.annotation.Auth;
+import com.hwan.yaksa.repository.MemberRepository;
 import com.hwan.yaksa.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -14,34 +15,36 @@ import javax.servlet.http.HttpServletResponse;
 @RequiredArgsConstructor
 public class AuthInterceptor implements HandlerInterceptor {
 
-    private final MemberService memberService;
+    private final MemberRepository memberRepository;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        if (!(handler instanceof HandlerMethod)){
+        if (!(handler instanceof HandlerMethod)) {
             return true;
         }
 
-        HandlerMethod handlerMethod=(HandlerMethod)handler;
-        Auth auth=handlerMethod.getMethodAnnotation(Auth.class);
-        if(auth==null){
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+
+        Auth auth = handlerMethod.getMethodAnnotation(Auth.class);
+        if (auth == null) {
             return true;
         }
-        Long sessionId=(Long)request.getSession().getAttribute("sessionId");
-        System.out.println("get sessionid:"+sessionId);
-        if(sessionId==null){
+
+        Long sessionId = (Long) request.getSession().getAttribute("sessionId");
+
+        if (sessionId == null) {
             response.sendRedirect("/");
             return false;
-        }
-        else{
-            if(memberService.findSession(sessionId)==false){
+        } else {
+            if (memberRepository.findSession(sessionId) == null) {
                 response.sendRedirect("/");
                 return false;
-            }
-            else{
+            } else {
                 return true;
             }
         }
+
+
     }
 }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+    <th:block th:include="/fragment/header::header"/>
+    <title>자유게시판</title>
+</head>
+<body>
+<th:block th:include="/fragment/bodyHeader::bodyHeader"/>
+<div style="position:relative">
+    <div style="position:absolute;top:100px;width:50%;left:25%">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>날짜</th>
+                <th>조회수</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="list:${boardList}">
+                <td th:onclick="|location.href='@{/board}?id=${list.id}'|" th:text="${list.id}"></td>
+                <td th:text="${list.title}"></td>
+                <td th:text="${list.writer}"></td>
+                <td th:text="${list.registerTime}"></td>
+                <td th:text="${list.readCount}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <hr/>
+        <div style="position:absolute;width:50%;left:25%">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li th:each="i:${#numbers.sequence(1,count)}" class="page-item"><a class="page-link" th:text="${i}"
+                                                                                       th:href="@{|/searchBoard?boardNum=${i}|}"></a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+            <button onclick="location.href='http://localhost:8080/createBoard'">글작성</button>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>
