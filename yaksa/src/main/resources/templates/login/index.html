@@ -1,17 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="/fragment/header::header"/>
+<th:block th:include="fragment/header"/>
     <title>로그인 페이지</title>
-    <style>
-
-    </style>
 </head>
-<th:block th:include="/fragment/bodyHeader::bodyHeader"/>
-
-
+<th:block th:include="fragment/bodyHeader"/>
 <div class="mb-3" align="center" style="position:relative;top:100px" > JJING YUCKSA</div>
-
 <div align="center" style="position:relative;top:100px">
     <form method="post" action="/tryLogin" th:object="${loginDTO}">
         <label th:for="login_id" style="width:70px">아이디 :</label>
@@ -22,5 +16,4 @@
     </form>
     <a href="join">회원가입</a>
 </div>
-
 </html>

@@ -2,10 +2,10 @@
 <html xmlns:th="www.thymeleaf.org">
 <head>
     <title>자유게시판</title>
-    <th:block th:include="/fragment/header"/>
+    <th:block th:include="fragment/header"/>
 </head>
 <body>
-<th:block th:include="/fragment/bodyHeader"/>
+<th:block th:include="fragment/bodyHeader"/>
 <div style="position:absolute;left:30%;top:20%;width:50%">
 <form method="post" action="/createWord" th:object="${boardDTO}">
     <div class="mb-3">

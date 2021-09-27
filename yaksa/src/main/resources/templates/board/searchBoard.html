@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="www.thymeleaf.org">
 <head>
-    <th:block th:include="/fragment/header::header"/>
+    <th:block th:include="fragment/header::header"/>
     <title>자유게시판</title>
 </head>
 <body>
-<th:block th:include="/fragment/bodyHeader::bodyHeader"/>
+<th:block th:include="fragment/bodyHeader::bodyHeader"/>
 <div style="position:relative">
     <div style="position:absolute;top:100px;width:50%;left:25%">
         <table class="table table-striped">
@@ -39,12 +39,9 @@
                     <li class="page-item"><a class="page-link" href="#">Next</a></li>
                 </ul>
             </nav>
-            <button onclick="location.href='http://localhost:8080/createBoard'">글작성</button>
+            <button onclick="location.href='/createBoard'">글작성</button>
         </div>
     </div>
-
-
 </div>
-
 </body>
 </html>

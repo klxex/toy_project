@@ -2,11 +2,11 @@
 <html xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <th:block th:insert="/fragment/header"/>
+    <th:block th:insert="fragment/header"/>
     <title>글 보기</title>
 </head>
 <body>
-<th:block th:insert="/fragment/bodyHeader"/>
+<th:block th:insert="fragment/bodyHeader"/>
 
 <div th:object="${board}" style="position:absolute;top:200px;left:30%;width:50%">
 

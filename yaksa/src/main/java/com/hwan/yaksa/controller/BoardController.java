@@ -30,7 +30,7 @@ public class BoardController {
     public String getBoard(@RequestParam("id") Long boardNum, Model model) {
 
         model.addAttribute("board",boardServiceImpl.find(boardNum));
-        return "/board/boardForm";
+        return "board/boardForm";
     }
 
 
