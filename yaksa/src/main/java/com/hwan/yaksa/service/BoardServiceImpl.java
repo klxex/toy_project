@@ -18,7 +18,6 @@ public class BoardServiceImpl implements BoardService {
         Board board=new Board();
         board.setTitle(boardDTO.getTitle());
         board.setBoardContent(boardDTO.getBoardContent());
-        board.setRegisterTime(LocalDateTime.now());
         boardRepository.save(board);
     }
 

@@ -1,8 +1,70 @@
 <!DOCTYPE html>
 <html xmlns:th="www.thymeleaf.org">
 <head>
-    <th:block th:include="/fragment/header::header"/>
+    <th:block th:include="fragment/header::header"/>
     <title>약검색</title>
 </head>
+<th:block th:include="fragment/bodyHeader::bodyHeader"/>
 
+<div class="container mt-3">
+    <Input type="text" id="Text"/>
+    <button id="searchAll">전체 검색</button>
+    <button id="searchTitle">제목 검색</button>
+</div>
+
+<div id="list">
+
+
+</div>
+
+<script>
+    const searchAll=document.querySelector("#searchAll");
+    const searchTitle=document.querySelector("#searchTitle");
+
+    const all=async ()=>{
+      try{
+        const url="http://localhost:8080/items";
+        const response=await axios.get(url);
+        console.log(response.data);
+        const lists= response.data;
+        const listElement=document.querySelector("#list");
+
+        for(let i=0;i<lists.length;i++){
+            const child=document.createElement('div');
+            child.setAttribute("class","container mt-3 border");
+            child.setAttribute("style","width:30%;height:100px;display:inline-block");
+            child.append(lists[i].name);
+            listElement.append(child);
+        }
+      }
+      catch(error){
+        console.log(error);
+      }
+    };
+
+    const title=async ()=>{
+       try{
+            const text=document.querySelector("#Text");
+            const url="http://localhost:8080/items?query="+text.value();
+            const response=await axios.get(url);
+            const lists= response.data;
+            const listElement=document.querySelector("#list");
+
+            for(let i=0;i<lists.length;i++){
+                const child=document.createElement('div');
+                child.setAttribute("class","container mt-3 border");
+                child.setAttribute("style","width:30%;height:100px;display:inline-block");
+                child.append(lists[i].name);
+                listElement.append(child);
+            }
+
+       }
+       catch(error){
+
+       }
+    };
+
+    searchAll.addEventListener("click",all);
+    searchTitle.addEventListener("click",title);
+</script>
 </html>
