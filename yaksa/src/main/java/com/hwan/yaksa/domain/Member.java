@@ -30,8 +30,6 @@ public class Member {
 
     @Enumerated(value=EnumType.STRING)
     private Role role;
-    
-    //
     public LocalDateTime createDateTime;
 
 

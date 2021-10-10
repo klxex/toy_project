@@ -6,14 +6,13 @@
 </head>
 <th:block th:include="fragment/bodyHeader::bodyHeader"/>
 
-<div class="container mt-3">
-    <Input type="text" id="Text"/>
-    <button id="searchAll">전체 검색</button>
-    <button id="searchTitle">제목 검색</button>
+<div class="container mt-3" style="display:flex;justify-content:center">
+        <Input type="text" id="Text"/>
+        <button id="searchAll">전체 검색</button>
+        <button id="searchTitle">제목 검색</button>
 </div>
 
-<div id="list">
-
+<div id="list" class="container">
 
 </div>
 
@@ -28,13 +27,38 @@
         console.log(response.data);
         const lists= response.data;
         const listElement=document.querySelector("#list");
+        const rowElement=document.createElement('div');
 
+
+        $('#list').empty();
+        rowElement.setAttribute("class","row");
+        rowElement.setAttribute("id","rows");
+        listElement.append(rowElement);
         for(let i=0;i<lists.length;i++){
+            const contain=document.createElement('div');
             const child=document.createElement('div');
-            child.setAttribute("class","container mt-3 border");
-            child.setAttribute("style","width:30%;height:100px;display:inline-block");
-            child.append(lists[i].name);
-            listElement.append(child);
+            const child_1=document.createElement('div');
+            const a_1=document.createElement('img');
+            const br=document.createElement('br');
+
+
+            a_1.setAttribute("src","http://localhost:8080/images/"+lists[i].fileDTO.id);
+            a_1.setAttribute("style","width:100%");
+
+            child_1.setAttribute("class","col-md-3 col-sm-3 mt-3");
+            child_1.append(a_1);
+
+            child.setAttribute("class","col-md-3 col-sm-3");
+            child.append("Name: "+lists[i].name);
+            child.append(br);
+            child.append("Description: "+lists[i].description);
+
+            contain.setAttribute("class","col-md-3 col-sm-3");
+            contain.append(child);
+            contain.append(child_1);
+
+            rowElement.append(contain);
+
         }
       }
       catch(error){
@@ -52,8 +76,7 @@
 
             for(let i=0;i<lists.length;i++){
                 const child=document.createElement('div');
-                child.setAttribute("class","container mt-3 border");
-                child.setAttribute("style","width:30%;height:100px;display:inline-block");
+                child.setAttribute("class","cols-md-3 mt-3 border");
                 child.append(lists[i].name);
                 listElement.append(child);
             }

@@ -18,10 +18,6 @@
             <input type="text" class="form-control" id="description" >
         </div>
         <div class="mb-3">
-            <label for="image" class="form-label">Image</label>
-            <input type="text" class="form-control" id="image" >
-        </div>
-        <div class="mb-3">
             <label for="count" class="form-label">Count:</label>
             <input type="text" class="form-control" id="count" >
         </div>
@@ -29,23 +25,24 @@
             <label for="price" class="form-label">Price</label>
             <input type="text" class="form-control" id="price" >
         </div>
-    <!--    <div>-->
-    <!--        <input type="file" id="File" name="files" multiple="multiple"/>-->
-    <!--    </div>-->
+        <div>
+            <input type="file" id="File" name="file" />
+        </div>
         <button id="Button">전송</button>
     </div>
 </div>
 <script>
         const buttonElement=document.querySelector("#Button");
+        let FileElement=document.querySelector("#File");
         const getData= async ()=>{
             try{
                 url='http://localhost:8080/items';
                 const formData = new FormData();
                 formData.append("name",document.querySelector("#name").value);
                 formData.append("description",document.querySelector("#description").value);
-                formData.append("image",document.querySelector("#image").value);
                 formData.append("count",document.querySelector("#count").value);
                 formData.append("price",document.querySelector("#price").value);
+                formData.append("file",FileElement.files[0]);
                 const response=await axios.post(url,formData);
                 console.log(response);
 

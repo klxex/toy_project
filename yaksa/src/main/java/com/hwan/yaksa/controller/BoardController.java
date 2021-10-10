@@ -18,11 +18,10 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class BoardController {
     private final BoardServiceImpl boardServiceImpl;
-    @Auth
-    @GetMapping("searchBoard")
-    public String searchBoard(@RequestParam(value="boardNum",required = false, defaultValue="1") Long id,Model model){
-        model.addAttribute("boardList", boardServiceImpl.findAll(id));
-        model.addAttribute("count", boardServiceImpl.getCount());
+
+    @GetMapping("/searchBoard")
+    public String searchBoard(@RequestParam(value="boardNum",required = false, defaultValue="1") Long boardNum,Model model){
+        model.addAttribute("boardList",boardServiceImpl.findAll(boardNum));
         return "board/searchBoard";
     }
 

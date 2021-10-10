@@ -5,82 +5,90 @@ import java.io.InputStreamReader;
 
 
 class Main{
-    public static int directions[][]={{0,1},{0,-1},{1,0},{-1,0}};
-    static int answer=1000000000;
-    static int nested=0;
+
+
+
+    public final static int MAX=100001;
+    static int costs=-1;
+    static Vector<Integer> router=new Vector<>();
     public static void main(String args[]) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+       BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+       StringTokenizer st=new StringTokenizer(br.readLine());
 
-        int n = Integer.parseInt(st.nextToken());
-        int  k = Integer.parseInt(st.nextToken());
-        int visited[]=new int[100001];
-        bfs(n,k,visited);
+       int n=Integer.parseInt(st.nextToken());
+       int k=Integer.parseInt(st.nextToken());
 
-
-    }
-
-    static class Node implements Comparable<Node>{
-        int pos;
-
-        public Node(int pos, int dist) {
-            this.pos = pos;
-            this.dist = dist;
-        }
-
-        int dist;
-
-        public int compareTo(Node o){
-            return this.dist-o.dist;
-        }
+        bfs(n,k);
 
     }
-// 5~17
-    public static void bfs(int n,int k,int visited[]){
-        PriorityQueue<Node> pq = new PriorityQueue<>();
-        pq.add(new Node(n, 0));
-        for(int i=0;i<visited.length;i++){
+
+
+    public static void bfs(int n,int k){
+
+        int visited[]=new int[MAX];
+        int parent[]=new int[MAX];
+        Queue<Integer[]> queue = new LinkedList<>();
+
+        for(int i=0;i<MAX;i++){
             visited[i]=-1;
         }
         visited[n]=0;
+        parent[n]=n;
+        queue.add(new Integer[]{n,0});
 
-        while (!pq.isEmpty()) {
-            Node node = pq.poll();
-            int next_pos=0;
-            int next_dist=0;
-
-            if(node.pos==k){
-                System.out.println(node.dist);
-                break;
-            }
-
+        while(!queue.isEmpty()){
+            Integer[] node = queue.poll();
+            int next=0;
             for(int i=0;i<3;i++){
                 if(i==0){
-                    next_pos=node.pos+1;
-                    next_dist=node.dist+1;
+                    next=node[0]+1;
                 }
                 else if(i==1){
-                    next_pos=node.pos-1;
-                    next_dist=node.dist+1;
+                    next=node[0]-1;
                 }
                 else{
-                    next_pos=node.pos*2;
-                    next_dist=node.dist;
+                    next=node[0]*2;
                 }
 
-                if(next_pos>=0 && next_pos<=100000 && (visited[next_pos]==-1 || visited[next_pos]>next_dist)){
-                    visited[next_pos]=next_dist;
-                    pq.add(new Node(next_pos, next_dist));
+                if(next<0 || MAX<=next){
+                    continue;
                 }
+
+                if(visited[next]==-1 || visited[next]>(node[1]+1)){
+                    visited[next]=node[1]+1;
+                    parent[next]=node[0];
+                    queue.add(new Integer[]{next,node[1]+1});
+                }
+
+
             }
 
 
 
         }
 
+        Stack<Integer> stack=new Stack<>();
+        int x=k;
 
-
+        while(true){
+            if(parent[x]==x){
+                stack.add(x);
+                break;
+            }
+            else{
+                stack.add(x);
+                x=parent[x];
+            }
+        }
+        System.out.println(visited[k]);
+        while(!stack.isEmpty()){
+            System.out.print(stack.pop()+" ");
+        }
 
     }
+
+
+
+
 
 }

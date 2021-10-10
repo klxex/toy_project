@@ -4,9 +4,10 @@ import com.hwan.yaksa.domain.Board;
 import com.hwan.yaksa.dto.BoardDTO;
 import com.hwan.yaksa.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -21,16 +22,20 @@ public class BoardServiceImpl implements BoardService {
         boardRepository.save(board);
     }
 
-    public List<Board> findAll(Long boardNum){
-        return boardRepository.findAll(boardNum);
+    public Page<Board> findAll(Long boardNum){
+        PageRequest pageRequest=PageRequest.of(boardNum.intValue()-1,SIZE);
+        return boardRepository.findAll(pageRequest);
+
     }
 
     public Board find(Long id){
-        return boardRepository.find(id);
+        return boardRepository.findById(id).get();
     }
 
-    public Long getCount(){
-        return (boardRepository.getCount()-1)/SIZE+1;
+    public void delete(Long id){
+
     }
+
+
 
 }

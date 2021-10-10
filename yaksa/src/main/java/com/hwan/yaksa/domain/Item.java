@@ -4,10 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Entity
@@ -20,21 +17,22 @@ public class Item extends TimeEntity {
     private Long id;
     private String name;
     private String description;
-    private String image;
     private int count;
     private int price;
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="image_id")
+    private Image image;
 
     @Builder
-    public Item(String name, String description, String image, int count, int price, String image_dir) {
+    public Item(String name, String description, int count, int price, Image image) {
         this.name = name;
         this.description = description;
-        this.image = image;
         this.count = count;
         this.price = price;
-        this.image_dir = image_dir;
+        this.image = image;
     }
 
-    private String image_dir;
+
 
 
 
