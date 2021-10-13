@@ -4,10 +4,10 @@ spring:
       max-file-size: 50MB
       max-request-size: 50MB
   datasource:
-    url: jdbc:h2:tcp://192.168.219.100/~/yaksa
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    url: jdbc:mariadb://freelect-springboot2-webservice.cs3ybrg1pnrh.ap-northeast-2.rds.amazonaws.com:3306/freelec_springboot2_webservice?characterEncoding=UTF-8
+    username: jojoldu
+    password: 12345678
+    driver-class-name: org.mariadb.jdbc.Driver
 
   jpa:
     hibernate:
