@@ -69,7 +69,7 @@
     const title=async ()=>{
        try{
             const text=document.querySelector("#Text");
-            const url="http://localhost:8080/items?query="+text.value();
+            const url="http://ec2-15-164-160-161.ap-northeast-2.compute.amazonaws.com:8080/items?query="+text.value();
             const response=await axios.get(url);
             const lists= response.data;
             const listElement=document.querySelector("#list");
