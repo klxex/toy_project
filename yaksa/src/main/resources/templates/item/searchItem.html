@@ -22,7 +22,7 @@
 
     const all=async ()=>{
       try{
-        const url="http://localhost:8080/items";
+        const url="http://ec2-15-164-160-161.ap-northeast-2.compute.amazonaws.com:8080/items";
         const response=await axios.get(url);
         console.log(response.data);
         const lists= response.data;
@@ -42,7 +42,7 @@
             const br=document.createElement('br');
 
 
-            a_1.setAttribute("src","http://localhost:8080/images/"+lists[i].fileDTO.id);
+            a_1.setAttribute("src","http://ec2-15-164-160-161.ap-northeast-2.compute.amazonaws.com:8080/images/"+lists[i].fileDTO.id);
             a_1.setAttribute("style","width:100%");
 
             child_1.setAttribute("class","col-md-3 col-sm-3 mt-3");
