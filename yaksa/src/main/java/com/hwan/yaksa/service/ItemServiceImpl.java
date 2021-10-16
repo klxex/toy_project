@@ -12,12 +12,15 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService {
-    static String LOCAL_DIR="src/main/resources/static/img";
+    static Path p= Paths.get("");
+    static String LOCAL_DIR=p.toAbsolutePath().toString();
     private final ItemRepository itemRepository;
     private final ImageRepository imageRepository;
 
@@ -34,7 +37,14 @@ public class ItemServiceImpl implements ItemService {
 
     public void insertItem(ItemDTO itemDTO, MultipartFile multipartFile){
         try {
+            File dir = new File(LOCAL_DIR);
             File file = new File(LOCAL_DIR+File.separator+multipartFile.getOriginalFilename());
+
+            if(!dir.exists()){
+                dir.mkdirs();
+            }
+
+            file.createNewFile();
             FileOutputStream fos=new FileOutputStream(file);
             fos.write(multipartFile.getBytes());
             fos.close();
