@@ -20,7 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService {
     static Path p= Paths.get("");
-    static String LOCAL_DIR=p.toAbsolutePath().toString();
+    static String LOCAL_DIR=p.toAbsolutePath().toString()+"/img";
     private final ItemRepository itemRepository;
     private final ImageRepository imageRepository;
 
