@@ -32,7 +32,7 @@ public class ItemRestController {
 
     @Auth
     @GetMapping("/images/{id}")
-    public ResponseEntity<InputStreamSource> download(@PathVariable("id") Long id){
+    public ResponseEntity<InputStreamSource> download(@PathVariable("id") Long id,HttpServletResponse response){
         File file=itemService.searchImage(id);
         try{
             InputStreamResource resource=new InputStreamResource(new FileInputStream(file));

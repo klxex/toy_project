@@ -37,6 +37,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 
         if (sessionId == null && googleId==null) {
             response.sendRedirect("/");
+            System.out.println("session nulllllllllllllll");
             return false;
         }
         else {
