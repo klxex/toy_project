@@ -27,19 +27,27 @@ public class User extends TimeEntity {
     @Column(nullable = false)
     private Role role;
 
+    @Column
+    private String picture;
+
+
     @Builder
-    public User(String name,String email,Role role){
+    public User(String name,String email,String picture,Role role){
         this.name=name;
         this.email=email;
+        this.picture=picture;
         this.role=role;
     }
+
+
 
     public String getRoleKey(){
         return this.role.getKey();
     }
 
-    public User update(String name) {
+    public User update(String name, String picture) {
         this.name = name;
+        this.picture=picture;
         return this;
     }
 
