@@ -8,7 +8,8 @@ spring:
     username: jojoldu
     password: 12345678
     driver-class-name: org.mariadb.jdbc.Driver
-
+  profile:
+    include: oauth
   jpa:
     hibernate:
       ddl-auto: create

@@ -1,6 +1,7 @@
 package com.hwan.yaksa.restcontroller;
 
 
+import com.hwan.yaksa.annotation.Auth;
 import com.hwan.yaksa.domain.Image;
 import com.hwan.yaksa.domain.Item;
 import com.hwan.yaksa.dto.FileDTO;
@@ -28,6 +29,8 @@ public class ItemRestController {
     private final ItemService itemService;
     //@Value("${")
     static String dir_name;
+
+    @Auth
     @GetMapping("/images/{id}")
     public ResponseEntity<InputStreamSource> download(@PathVariable("id") Long id){
         File file=itemService.searchImage(id);
@@ -47,6 +50,7 @@ public class ItemRestController {
 
     }
 
+    @Auth
     @GetMapping("/items")
     public List<ItemDTO> searchItem(@RequestParam(value="query",required=false) String query){
         List<Item> items;
