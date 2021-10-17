@@ -1,6 +1,7 @@
 package com.hwan.yaksa.interceptor;
 
 import com.hwan.yaksa.annotation.Auth;
+import com.hwan.yaksa.config.auth.dto.SessionUser;
 import com.hwan.yaksa.repository.MemberRepository;
 import com.hwan.yaksa.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -32,17 +33,20 @@ public class AuthInterceptor implements HandlerInterceptor {
         }
 
         Long sessionId = (Long) request.getSession().getAttribute("sessionId");
+        SessionUser googleId = (SessionUser) request.getSession().getAttribute("user");
 
-        if (sessionId == null) {
+        if (sessionId == null && googleId==null) {
             response.sendRedirect("/");
             return false;
-        } else {
-            if (memberRepository.findSession(sessionId) == null) {
-                response.sendRedirect("/");
-                return false;
-            } else {
-                return true;
-            }
+        }
+        else {
+//            if (memberRepository.findSession(sessionId) == null) {
+//                response.sendRedirect("/");
+//                return false;
+//            } else {
+//                return true;
+//            }
+            return true;
         }
 
 

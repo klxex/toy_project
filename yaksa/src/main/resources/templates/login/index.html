@@ -7,7 +7,7 @@
 <th:block th:include="fragment/bodyHeader"/>
 <div align="center" class="mt-3" style="position:relative;top:100px">
     <div class="container col-md-3 col-sm-3">
-        <p class="row"><h1 style="font-color:blue">JJING YUCKSA</h1></p>
+        <p class="row"><h1 style="font-color:blue">JJING YAKSA</h1></p>
         <form class="row" method="post" action="/tryLogin" th:object="${loginDTO}" >
             <div class="form-floating">
                 <input class="form-control" th:field="*{login_id}" name="login_id" id="floatingInput"><br>
@@ -27,6 +27,26 @@
             <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
         </form>
         <a href="join">회원가입</a>
+    </div>
+
+    <div>
+
+        <h1>스프링부트로 시작하는 웹 서비스 Ver.2</h1>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+<!--                    <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>-->
+<!--                    {{#userName}}-->
+<!--                    Logged in as: <span id="user">{{userName}}</span>-->
+<!--                    <a href="/logout" class="btn btn-info active" role="button">Logout</a>-->
+
+                    <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+<!--                    <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>-->
+<!--                    {{/userName}}-->
+                </div>
+            </div>
+            <br>
+        </div>
     </div>
 </div>
 
