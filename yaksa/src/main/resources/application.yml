@@ -20,6 +20,8 @@ spring:
   devtools:
     livereload:
       enabled: true
+  session:
+    store-type: jdbc
 
 logging:
   level:
