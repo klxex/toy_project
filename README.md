@@ -1,4 +1,4 @@
-# toy_project
+# YAKSA(약 및 비타민 관련 웹)
 This is for practicing Web Backend,.Yaksa program provides drug-related knowledge
 
 #기술스택
