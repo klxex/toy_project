@@ -1,6 +1,8 @@
 package com.hwan.yaksa.controller;
 
 import com.hwan.yaksa.annotation.Auth;
+import com.hwan.yaksa.config.auth.LoginUser;
+import com.hwan.yaksa.config.auth.dto.SessionUser;
 import com.hwan.yaksa.domain.Member;
 import com.hwan.yaksa.dto.JoinDTO;
 import com.hwan.yaksa.dto.LoginDTO;
@@ -23,8 +25,13 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/")
-    public String getLoginPage(Model model){
+    public String getLoginPage(Model model,@LoginUser SessionUser user){
         model.addAttribute("loginDTO", new LoginDTO());
+
+        if(user!=null){
+            model.addAttribute("userName",user.getName());
+        }
+
         return "login/index";
     }
 
