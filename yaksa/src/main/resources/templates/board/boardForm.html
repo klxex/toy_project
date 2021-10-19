@@ -8,18 +8,19 @@
 <body>
 <th:block th:insert="fragment/bodyHeader"/>
 
-<div class="container-fluid d-flex justify-content-center">
-    <div class="container-fluid" style="width:400px" th:object="${board}">
+<div class="d-grid justify-content-center">
+    <div class="container-fluid border" style="width:400px" th:object="${board}">
             <label>제목:</label>
-            <h4 th:text="${board.title}"></h4>
+            <h4 class="border" th:text="${board.title}"></h4>
             <label>내용:</label>
-            <p th:text=${board.boardContent}></p>
+            <p class="border" th:text=${board.boardContent}></p>
     </div>
 
-    <div class="card" style="width:400px">
+    <div class="card border" style="width:400px">
         <div class="card-body">
-            <label for="comment">Comments:</label>
+            <label class="border" for="comment">Comments:</label>
             <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+            <a href="#" class="btn btn-primary">댓글 달기</a>
         </div>
     </div>
 </div>
