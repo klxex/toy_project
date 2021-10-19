@@ -30,8 +30,8 @@
         <a href="join">회원가입</a>
         <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
         <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
-        <a th:if="${user!=null}" href="/logout" class="btn btn-info active" role="button">Logout</a>
-        <h2 th:if="${user!=null}" th:text='${"안녕하세요:"+user+"님"}'></h2>
+        <a th:if="${userName!=null}" href="/logout" class="btn btn-info active" role="button">Logout</a>
+        <h2 th:if="${userName!=null}" th:text='${"안녕하세요:"+userName+"님"}'></h2>
     </div>
 </div>
 <!--    <div>-->
