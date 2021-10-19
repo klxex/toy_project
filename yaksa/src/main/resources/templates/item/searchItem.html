@@ -15,7 +15,7 @@
         <button id="searchTitle">제목 검색</button>
 </div>
 
-<div id="list" class="container">
+<div id="list" class="container d-flex">
 
 </div>
 
@@ -50,7 +50,7 @@
             const cardText=document.createElement('p');
             const btn=document.createElement('a');
 
-            card.setAttribute("class","card col-md-4 d-flex");
+            card.setAttribute("class","card col-md-4");
 
             cardImgTop.setAttribute("class","card-img-top");
             cardImgTop.setAttribute("src","http://ec2-15-164-160-161.ap-northeast-2.compute.amazonaws.com:8080/images/"+lists[i].fileDTO.id);
