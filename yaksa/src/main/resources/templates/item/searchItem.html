@@ -6,7 +6,7 @@
 </head>
 <th:block th:include="fragment/bodyHeader::bodyHeader"/>
 
-<div class="container-fluid p-5 bg-primary text-white text-center">
+<div class="container-fluid p-5 text-center">
     <h1>약 검색하기</h1>
 </div>
 <div class="container mt-3" style="display:flex;justify-content:center">
@@ -19,6 +19,15 @@
 
 </div>
 
+
+<!--<div class="card" style="width:400px">-->
+<!--    <img class="card-img-top" src="img_avatar1.png" alt="Card image">-->
+<!--    <div class="card-body">-->
+<!--        <h4 class="card-title">John Doe</h4>-->
+<!--        <p class="card-text">Some example text.</p>-->
+<!--        <a href="#" class="btn btn-primary">See Profile</a>-->
+<!--    </div>-->
+<!--</div>-->
 <script>
     const searchAll=document.querySelector("#searchAll");
     const searchTitle=document.querySelector("#searchTitle");
@@ -30,37 +39,39 @@
         console.log(response.data);
         const lists= response.data;
         const listElement=document.querySelector("#list");
-        const rowElement=document.createElement('div');
-
 
         $('#list').empty();
-        rowElement.setAttribute("class","row");
-        rowElement.setAttribute("id","rows");
-        listElement.append(rowElement);
+
         for(let i=0;i<lists.length;i++){
-            const contain=document.createElement('div');
-            const child=document.createElement('div');
-            const child_1=document.createElement('div');
-            const a_1=document.createElement('img');
-            const br=document.createElement('br');
+            const card=document.createElement('div');
+            const cardImgTop=document.createElement('img');
+            const cardBody=document.createElement('div');
+            const cardTitle=document.createElement('h4');
+            const cardText=document.createElement('p');
+            const btn=document.createElement('a');
 
+            card.setAttribute("class","card col-md-4");
 
-            a_1.setAttribute("src","http://ec2-15-164-160-161.ap-northeast-2.compute.amazonaws.com:8080/images/"+lists[i].fileDTO.id);
-            a_1.setAttribute("style","width:100%");
+            cardImgTop.setAttribute("class","card-img-top");
+            cardImgTop.setAttribute("src","http://ec2-15-164-160-161.ap-northeast-2.compute.amazonaws.com:8080/images/"+lists[i].fileDTO.id);
 
-            child_1.setAttribute("class","col-md-3 col-sm-3 mt-3");
-            child_1.append(a_1);
+            cardTitle.setAttribute("class","card-title");
 
-            child.setAttribute("class","col-md-3 col-sm-3");
-            child.append("Name: "+lists[i].name);
-            child.append(br);
-            child.append("Description: "+lists[i].description);
+            cardText.setAttribute("class","card-text");
 
-            contain.setAttribute("class","col-md-3 col-sm-3");
-            contain.append(child);
-            contain.append(child_1);
+            cardBody.setAttribute("class","card-body");
 
-            rowElement.append(contain);
+            btn.setAttribute("class","btn btn-primary");
+
+            cardTitle.append("Name: "+lists[i].name);
+            cardText.append("Description: "+lists[i].description);
+
+            cardBody.append(cardTitle);
+            cardBody.append(cardText);
+            cardBody.append(btn);
+
+            listElement.append(cardImgTop);
+            listElement.append(cardBody);
 
         }
       }
