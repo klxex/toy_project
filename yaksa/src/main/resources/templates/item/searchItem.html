@@ -50,22 +50,22 @@
             const cardText=document.createElement('p');
             const btn=document.createElement('a');
 
-            card.setAttribute("class","card col-md-4");
+            card.setAttribute("class","card col-md-4 d-flex");
 
             cardImgTop.setAttribute("class","card-img-top");
             cardImgTop.setAttribute("src","http://ec2-15-164-160-161.ap-northeast-2.compute.amazonaws.com:8080/images/"+lists[i].fileDTO.id);
 
-            cardTitle.setAttribute("class","card-title");
+            cardTitle.setAttribute("class","card-title text-center");
 
-            cardText.setAttribute("class","card-text");
+            cardText.setAttribute("class","card-text text-center");
 
             cardBody.setAttribute("class","card-body");
 
             btn.setAttribute("class","btn btn-primary");
             btn.append("장바구니 담기");
 
-            cardTitle.append("약 이름: "+lists[i].name);
-            cardText.append("설명: "+lists[i].description);
+            cardTitle.append(lists[i].name);
+            cardText.append(lists[i].description);
 
             cardBody.append(cardTitle);
             cardBody.append(cardText);
