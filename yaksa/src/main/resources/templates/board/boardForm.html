@@ -8,21 +8,19 @@
 <body>
 <th:block th:insert="fragment/bodyHeader"/>
 
-<div th:object="${board}" style="position:absolute;top:200px;left:30%;width:50%">
-
-<!--        <tr th:text="${board.title}"></tr>-->
-<!--        <tr th:text="${board.boardContent}"></tr>-->
-<!--        <tr th:text="${board.writer}"></tr>-->
-<!--        <tr th:text="${board.readCount}"></tr>-->
-
-    <div class="mb-3">
-<!--        <label for="exampleFormControlInput1" class="form-label">Email address</label>-->
-        <input type=text class="form-control" style="background-color:blue"  th:value="${board.title}"/>
-    </div>
-
-    <div class="mb-3">
-        <label th:text=${board.boardContent} class="form-control" ></label>
+<div class="card" style="width:400px" th:object="${board}">
+    <div class="card-body">
+        <h4 class="card-title" th:text="${board.title}"></h4>
+        <p class="card-text" th:text=${board.boardContent}></p>
     </div>
 </div>
+
+<div class="card" style="width:400px">
+    <div class="card-body">
+        <input type="text" class="card-text"/>
+        <a href="#" class="btn btn-primary">댓글 달기</a>
+    </div>
+</div>
+
 </body>
 </html>

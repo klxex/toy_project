@@ -5,10 +5,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,12 +16,21 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Board extends TimeEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable=false,length=100)
     private String title;
-    private String writer;
+
+    @Lob
     private String boardContent;
+
+    @ColumnDefault("0")
     private int readCount=0;
+
+
+    private String writer;
+
 
     @Builder
     public Board(String title,String writer,String boardContent,int readCount){
